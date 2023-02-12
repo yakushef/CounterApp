@@ -9,11 +9,55 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var resultLabel: UILabel!
+    
+    @IBOutlet weak var incrementButton: UIButton!
+    
+    @IBOutlet weak var resetButton: UIButton!
+    
+    private var counterValue:Int = 0
+    
+    private func updateUI() {
+        let labelText = NSMutableAttributedString(string: "Значение счётчика:\n")
+        let boltTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 64)]
+        let boldLabelText = NSMutableAttributedString(string: "\(counterValue)", attributes: boltTextAttributes)
+        labelText.append(boldLabelText)
+        resultLabel.attributedText = labelText
+        
+        if counterValue == 0 {
+            resetButton.isEnabled = false
+        } else {
+            resetButton.isEnabled = true
+        }
+    }
+    
+    private func incrementCounter() {
+        counterValue += 1
+        updateUI()
+    }
+    
+    private func resetCounter() {
+        counterValue = 0
+        updateUI()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        incrementButton.layer.cornerRadius = incrementButton.frame.height / 2
+        updateUI()
     }
 
+    @IBAction func incrementButtonTapped() {
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
+        incrementCounter()
+    }
+    
+    @IBAction func resetButtonTapped() {
+        resetCounter()
+    }
+    
+    
 
 }
 
