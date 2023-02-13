@@ -9,11 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak private var resultLabel: UILabel!
     
-    @IBOutlet weak var incrementButton: UIButton!
+    @IBOutlet weak private var incrementButton: UIButton!
     
-    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak private var resetButton: UIButton!
     
     private var counterValue:Int = 0
     
@@ -47,13 +47,13 @@ class ViewController: UIViewController {
         updateUI()
     }
 
-    @IBAction func incrementButtonTapped() {
+    @IBAction private func incrementButtonTapped() {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         incrementCounter()
     }
     
-    @IBAction func resetButtonTapped() {
+    @IBAction private func resetButtonTapped() {
         resetCounter()
     }
     
